@@ -13,7 +13,7 @@ class Solution(object):
             if char not in substring: 
                 substring += char
             else:
-                substring = substring[char.index()+1:]
+                substring = substring[substring.index(char)+1:]
                 substring += char
                 
             
