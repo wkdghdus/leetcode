@@ -5,36 +5,45 @@ class Solution(object):
         :rtype: List[List[str]]
         """
 
-        ttlDict = {}
+        ttlList = []
         freqDict = {}
+        freqDict2 = {}
+        anaList = []
 
         #iterate through words in strs
         for word in strs:
-            #create a frequency table for each characters in the word
+            anaList = [word]
             for char in word:
-                if char in freqDict:
-                    freqDict[char] += 1
-                else:
-                    freqDict[char] = 1
+                    if char in freqDict:
+                        freqDict[char] += 1
+                    else:
+                        freqDict[char] = 1
 
-            #append to dictionary
-            ttlDict[word] = freqDict
+            for word2 in strs:
+            #create a frequency table for each characters in the word
+                
+                for char in word2:
+                    if char in freqDict2:
+                        freqDict2[char] += 1
+                    else:
+                        freqDict2[char] = 1
+
+                for key in freqDict:
+                    if key not in freqDict2:
+                        break
+                    elif freqDict[key] != freqDict2[key]:
+                        break
+                    elif word2 == word:
+                        break
+                    else:
+                        anaList.append(word2)
+                        strs.remove(word2)
+
+                freqDict2 = {}
+                    
+            ttlList.append(anaList)
             freqDict = {}
 
-        ttlList = []
-        anaList = []
-        for word in ttlDict:
-            for word2 in ttlDict:
-                if len(ttlDict[word]) == len(ttlDict[word2]):
-                    for key in ttlDict[word]:
-                        if key not in ttlDict[word2]:
-                            break
-                        elif ttlDict[word][key] != ttlDict[word][key]:
-                            break
 
-                        anaList.append(word)
-
-                    ttlList.append(anaList)
         
-        return ttlList
-
+        return anaList
