@@ -1,49 +1,41 @@
 class Solution(object):
+
+    # def toDict(self, word):
+    #     wordDict = [0] * 26
+
+    #     for letter in word:
+    #         wordDict[ord(letter) - ord("a")] += 1
+            
+    #     return wordDict
+
     def groupAnagrams(self, strs):
         """
         :type strs: List[str]
         :rtype: List[List[str]]
         """
 
-        ttlList = []
-        freqDict = {}
-        freqDict2 = {}
-        anaList = []
+        retHash = {}
 
-        #iterate through words in strs
         for word in strs:
-            anaList = [word]
-            for char in word:
-                    if char in freqDict:
-                        freqDict[char] += 1
-                    else:
-                        freqDict[char] = 1
+            sortedWord = "".join(sorted(word))
 
-            for word2 in strs:
-            #create a frequency table for each characters in the word
-                
-                for char in word2:
-                    if char in freqDict2:
-                        freqDict2[char] += 1
-                    else:
-                        freqDict2[char] = 1
+            if sortedWord in retHash:
+                retHash[sortedWord].append(word)
+            else:
+                retHash[sortedWord] = [word]   
 
-                for key in freqDict:
-                    if key not in freqDict2:
-                        break
-                    elif freqDict[key] != freqDict2[key]:
-                        break
-                    elif word2 == word:
-                        break
-                    else:
-                        anaList.append(word2)
-                        strs.remove(word2)
+        return retHash.values()
 
-                freqDict2 = {}
-                    
-            ttlList.append(anaList)
-            freqDict = {}
+    #     anagramHash = {}
 
+    #     for word in strs:
+    #         wordDict = self.toDict(word)
 
-        
-        return anaList
+    #         if tuple(wordDict) in anagramHash:
+    #             anagramHash[tuple(wordDict)].append(word)
+    #         else:
+    #             anagramHash[tuple(wordDict)] = [word]
+            
+    #     return anagramHash.values()
+
+    
