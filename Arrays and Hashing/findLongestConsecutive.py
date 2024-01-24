@@ -5,20 +5,21 @@ class Solution(object):
         :rtype: int
         """
 
+        nums = list(set(nums)) # remove duplicates
         negative = []
         positive = []
 
-        for nums in nums:
-            if nums < 0:
-                negative.append(nums)
+        for num in nums:
+            if num < 0:
+                negative.append(num)
             else:
-                positive.append(nums)
+                positive.append(num)
         
-        negative.sort(reverse=True)
+        negative.sort()
         positive.sort()
 
         nums = negative + positive
-        nums = list(set(nums))
+
 
         next = 0
         longest = 0
