@@ -5,7 +5,16 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
+        
+        left = 0
+        right = len(numbers) - 1
 
-    # make a triangle using "*" and for loop
-    for i in range(1, 6):
-        print("*" * i)   
+        while left < right:
+            curSum = numbers[left] + numbers[right]
+
+            if curSum > target:
+                right -= 1
+            elif curSum < target:
+                left += 1
+            else:
+                return [left + 1, right + 1]
