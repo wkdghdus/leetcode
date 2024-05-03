@@ -6,15 +6,15 @@ class Solution(object):
         :rtype: List[int]
         """
         
+        #two pointer approach to this problem
+
         left = 0
-        right = len(numbers) - 1
+        right = len(numbers)-1
 
         while left < right:
-            curSum = numbers[left] + numbers[right]
-
-            if curSum > target:
-                right -= 1
-            elif curSum < target:
+            if numbers[left] + numbers[right] == target:
+                return [left + 1, right + 1]
+            elif numbers[left] + numbers[right] < target:
                 left += 1
             else:
-                return [left + 1, right + 1]
+                right -= 1
