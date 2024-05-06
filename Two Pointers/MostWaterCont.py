@@ -5,16 +5,19 @@ class Solution(object):
         :rtype: int
         """
         
-        left = 0
+        #two pointer approach
+        left = 0 
         right = len(height) - 1
         maxArea = 0
-        
+
         while left < right:
-            maxArea = max(maxArea, min(height[left], height[right]) * (right - left))
-            
-            if height[left] < height[right]:
-                left += 1
-            else:
+
+            currArea = min(height[left], height[right]) * (right - left)
+            maxArea = max(maxArea, currArea)
+
+            if height[left] > height[right]:
                 right -= 1
-                
+            else:
+                left += 1
+        
         return maxArea
