@@ -5,21 +5,16 @@ class Solution(object):
         :rtype: int
         """
         
-        #two pointer approach
-        left, right = 0, len(height) - 1
-        ttlArea = 0
-
-        while left < right: 
-            area = min(height[left], height[right]) * (right - left - 1)
-
-            for bar in height[left+1:right]:
-                area -= bar
-            
-            ttlArea += area
-
-            if height[left] > height[right]:
-                right -= 1
+        l, r = 0, len(height) - 1
+        leftMax, rightMax = height[l], height[r]
+        res = 0
+        while l < r:
+            if leftMax < rightMax:
+                l += 1
+                leftMax = max(leftMax, height[l])
+                res += leftMax - height[l]
             else:
-                left += 1
-
-        return ttlArea
+                r -= 1
+                rightMax = max(rightMax, height[r])
+                res += rightMax - height[r]
+        return res
