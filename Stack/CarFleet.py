@@ -7,11 +7,15 @@ class Solution(object):
         :rtype: int
         """
         
-        pair = [(p, s) for p, s in zip(position, speed)]
-        pair.sort(reverse=True)
+##HOWWWW
+
+        pair = [[p,s] for p, s in zip(position, speed)]
         stack = []
-        for p, s in pair:  # Reverse Sorted Order
+
+
+        for p,s in sorted(pair)[::-1]:
             stack.append((target - p) / s)
             if len(stack) >= 2 and stack[-1] <= stack[-2]:
-                stack.pop()
+                stack.pop() 
+
         return len(stack)
