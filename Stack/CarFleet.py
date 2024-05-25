@@ -8,10 +8,8 @@ class Solution(object):
         """
         
 ##HOWWWW
-
         pair = [[p,s] for p, s in zip(position, speed)]
         stack = []
-
 
         for p,s in sorted(pair)[::-1]:
             stack.append((target - p) / s)
