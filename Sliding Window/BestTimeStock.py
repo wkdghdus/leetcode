@@ -5,12 +5,13 @@ class Solution(object):
         :rtype: int
         """
         
-        result = 0
-        lowest = prices[0]
+        low = prices[0]
+        maxProfit = 0
 
         for price in prices:
-            if lowest > price:
-                lowest = price
-            result = max(result, price - lowest)
+            if low > price:
+                low = price
+            
+            maxProfit = max(maxProfit, price - low)
         
-        return result
+        return maxProfit
