@@ -27,5 +27,5 @@ class Solution(object):
 
         left.next = left.next.next
 
-        return head
+        return dummy.next
 
