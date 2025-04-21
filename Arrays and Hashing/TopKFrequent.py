@@ -5,45 +5,22 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
+
+        freq = [[] for i in range(len(nums) + 1)] 
+
+        for num in set(nums):
+            ind = nums.count(num)
+            freq[ind].append(num)
         
-
-        # 2nd try using a hash table
-        numsFreq = {}
-
-        for num in nums:
-            if num in numsFreq:
-                numsFreq[num] += 1
-            else:
-                numsFreq[num] = 1
+        print(freq)
 
         ret = []
 
-        frequency = numsFreq.values()
-        number = numsFreq.keys()
-
-        for i in range(k):
-            maximum = frequency.index(max(frequency))
-            ret.append(number[maximum])
-            frequency[maximum] = 0
+        for ind in range(len(nums), 0, -1):
+            if len(ret) >= k:
+                break
+            
+            for num in freq[ind]:
+                ret.append(num)
         
         return ret
-
-
-
-
-        # 1st try - this code those not cover the case where there is a negative integer in the array
-        # numsFreq = [0] * (max(nums)+1)
-
-        # for num in nums:
-        #     numsFreq[num] += 1
-        
-        # ret = []
-
-        # for i in range(k):
-        #     maximum = numsFreq.index(max(numsFreq))
-        #     ret.append(maximum)
-        #     numsFreq[maximum] = 0
-        
-        # return ret
-            
-        
