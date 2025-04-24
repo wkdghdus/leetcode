@@ -10,23 +10,18 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        
-        res = [1] * len(nums)
+        ret = [1] * len(nums)
 
-        pre = 1
+        prefix = 1
 
-        for i in range(len(nums)):
-            res[i] = pre
-            pre *= nums[i]
+        for ind, num in enumerate(nums):
+            ret[ind] = prefix
+            prefix *= num
         
-        post = 1
+        postfix = 1
 
-        for i in range(len(nums)-1, -1, -1):
-            res[i] *= post
-            post *= nums[i]
+        for i in range(len(nums) - 1, -1, -1):
+            ret[i] *= postfix
+            postfix *= nums[i]
         
-        return res
-        
-
-        
-        
+        return ret
