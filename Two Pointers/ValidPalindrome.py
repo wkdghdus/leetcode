@@ -5,39 +5,18 @@ class Solution(object):
         :rtype: bool
         """
         
-        #second approach, not using built in functionns
-        left = 0
-        right = len(s)-1
+        clean = "".join(char for char in s if char.isalnum()).lower()
 
-        while left < right:
-            while left < right and not self.isAlphaNumeric(s[left]):
-                left += 1
-            while left < right and not self.isAlphaNumeric(s[right]):
-                right -= 1
-            if s[left].lower() != s[right].lower():
-                return False
-            
-            left += 1
-            right -= 1
+        return clean == clean[::-1]
 
-        return True
+        # top, bot = len(clean)-1, 0
 
-
-    def isAlphaNumeric(self, c):
-        return (ord('0') <= ord(c) <= ord('9')) or (ord('a') <= ord(c) <= ord('z')) or (ord('A') <= ord(c) <= ord('Z'))
-
-
-        # #first clean the string to alphanumeric characters only and convert to lower case
-        # s = ''.join(e for e in s if e.isalnum()).lower()
-       
-        # #first two pointers approach. 
-        # left = 0
-        # right = len(s)-1
-        # while left < right:
-        #     if s[left] != s[right]:
+        # while top >= bot:
+        #     if clean[top] != clean[bot]: 
         #         return False
-        #     left += 1
-        #     right -= 1
+
+        #     top -= 1
+        #     bot += 1
+            
         
         # return True
-    
