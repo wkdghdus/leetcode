@@ -4,45 +4,19 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        
-        if len(s) % 2 == 1:
-            return False
+
+        if len(s) % 2 != 0: return False
+
 
         stack = []
-        brackets = {")" : "(", "}" : "{" , "]" : "["}
 
-        for p in s:
-            if p in brackets.values():
-                stack.append(p)
-            elif len(stack) == 0 or brackets[p] != stack.pop():
-                return False
-        
-        return stack == []
+        brackets = {')':'(', '}': '{', ']': '['}
 
-        # for p in s:
-        #     if p == "(" or p == "{" or p == "[":
-        #         stack.append(p)
-
-        #     elif p == ")" :
-        #         if stack == [] or stack[-1] != "(":
-        #             return False
-        #         else:
-        #             stack.pop()
-
-        #     elif p == "}":
-        #         if stack == [] or stack[-1] != "{":
-        #             return False
-        #         else:
-        #             stack.pop()
+        for bracket in s:
+            if bracket == '(' or bracket == '{' or bracket == '[':
+                stack.append(bracket)
+            else:
+                if len(stack) == 0 or stack.pop() != brackets[bracket]:
+                    return False
             
-        #     elif p == "]":
-        #         if stack == [] or stack[-1] != "[":
-        #             return False
-        #         else:
-        #             stack.pop()
-            
-            
-        # return stack == []
-
-
-            
+        return len(stack) == 0
