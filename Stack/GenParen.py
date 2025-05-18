@@ -1,29 +1,30 @@
 class Solution(object):
-    
-    
     def generateParenthesis(self, n):
         """
         :type n: int
         :rtype: List[str]
         """
-        stack = []
-        result = []
 
-        def foo(open, close):
+        temp_stack = []
+        ret = []
+        
+        def build_paren(open, close):
+
             if open == close == n:
-                result.append("".join(stack))
-                return
 
+                ret_str = "".join(temp_stack)
+                return ret.append(ret_str)
+            
             if open < n:
-                stack.append("(")
-                foo(open+1, close)
-                stack.pop()
-                
+                temp_stack.append("(")
+                build_paren(open+1, close)
+                temp_stack.pop()
+            
             if close < open:
-                stack.append(")")
-                foo(open, close + 1)
-                stack.pop()
+                temp_stack.append(")")
+                build_paren(open, close+1)
+                temp_stack.pop()
+            
+        build_paren(0,0)
 
-        foo(0,0)
-
-        return result
+        return ret
