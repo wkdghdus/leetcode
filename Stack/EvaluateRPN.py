@@ -6,22 +6,21 @@ class Solution(object):
         """
         val = []
 
-        for value in tokens:
+        for num_op in tokens:
 
-            if value == "+":
+            if num_op == "+":
                 val.append(val.pop() + val.pop())
-            
-            elif value == "-":
-                first, second = val.pop(), val.pop()
+            elif num_op == "-":
+                first = val.pop()
+                second = val.pop()
                 val.append(second - first)
-
-            elif value == "*":
+            elif num_op == "*":
                 val.append(val.pop() * val.pop())
-
-            elif value == "/":
-                first, second = val.pop(), val.pop()
-                val.append(int((float(second) / first)))
+            elif num_op == "/":
+                first = val.pop()
+                second = val.pop()
+                val.append(int(float(second) / first))
             else:
-                val.append(int(value))
-
-        return val.pop()
+                val.append(int(num_op))
+        
+        return val[-1]
