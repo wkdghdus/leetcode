@@ -13,14 +13,14 @@ class Solution(object):
             
             pivot = (l + r) // 2
 
-            pivotW = pivot % w
-            pivotH = pivot // w
-            
-            if matrix[pivotH][pivotW] < target:
-                l = pivot + 1
-            elif matrix[pivotH][pivotW] > target:
+            pivot_w = pivot % w 
+            pivot_h = pivot // w
+
+            if matrix[pivot_h][pivot_w] > target:
                 r = pivot - 1
-            elif matrix[pivotH][pivotW] == target:
+            elif matrix[pivot_h][pivot_w] < target:
+                l = pivot + 1
+            else:
                 return True
-            
+
         return False
