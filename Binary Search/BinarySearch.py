@@ -8,15 +8,14 @@ class Solution(object):
 
         l, r = 0, len(nums) - 1
 
-        while l <= r: 
+        while l <= r:
+            piv = l + ((r - l) // 2)
 
-            piv = (l + r) // 2
-
-            if nums[piv] < target: 
+            if nums[piv] < target:
                 l = piv + 1
             elif nums[piv] > target:
                 r = piv - 1
-            elif nums[piv] == target:
+            else:
                 return piv
-            
+
         return -1
