@@ -1,4 +1,5 @@
 class Solution(object):
+    
     def carFleet(self, target, position, speed):
         """
         :type target: int
@@ -7,13 +8,15 @@ class Solution(object):
         :rtype: int
         """
         
-##HOWWWW
-        pair = [[p,s] for p, s in zip(position, speed)]
+        if len(position) == 1 or len(position) == 0:
+            return len(position)
+        
+        pair = [(p, s) for p, s in zip(position, speed)]
+        pair.sort(reverse=True)
         stack = []
-
-        for p,s in sorted(pair)[::-1]:
-            stack.append((target - p) / s)
+        
+        for p, s in pair:  
+            stack.append(float(target - p) / s)
             if len(stack) >= 2 and stack[-1] <= stack[-2]:
-                stack.pop() 
-
+                stack.pop()
         return len(stack)
