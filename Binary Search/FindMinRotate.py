@@ -5,25 +5,22 @@ class Solution(object):
         :rtype: int
         """
 
-        res = nums[0]
+        if len(nums) == 1:
+            return nums[0]
+
 
         l, r = 0, len(nums) - 1
 
         while l <= r:
-            
-            #if the array is completely sorted with no rotation
-            if nums[l] < nums[r]:
-                res = min(res, nums[l])
-                break
+            piv = (l+r) // 2
 
-            piv = (l + r) // 2
+            if nums[piv + 1] < nums[piv]:
+                return nums[piv + 1]
             
-            if nums[l] <= nums[piv]:
+            if nums[piv] < nums[piv-1]:
+                return nums[piv]
+
+            if nums[piv] > nums[r]:
                 l = piv + 1
             else:
                 r = piv - 1
-
-            res = min(nums[piv], res)
-            
-        
-        return res
