@@ -6,23 +6,22 @@ class Solution(object):
         :rtype: int
         """
         
-        #dictionary for the frequency
-        freq = {}
         l = 0
-        r = 1
+        freq = {}
+        max_freq = 0
         res = 0
-        maxFreq = 0
 
         for r in range(len(s)):
+            
             freq[s[r]] = 1 + freq.get(s[r], 0)
-            maxFreq = max(maxFreq, freq[s[r]])
-
-            if (r-l+1) - maxFreq > k: 
+            
+            max_freq = max(max_freq, freq[s[r]])
+            
+            while (r - l + 1) - max_freq > k:
                 freq[s[l]] -= 1
                 l += 1
             
-            res = max(res, r-l+1)
+            
+            res = max(res, r - l + 1)
 
         return res
-            
-        
