@@ -5,16 +5,19 @@ class Solution(object):
         :rtype: int
         """
         
-        subst = []
-        longest = 0
+        charSet = set()
+        l = 0
+        res = 0
 
-        for i in range(len(s)):
-            while s[i] in subst:
-                subst.pop(0)
+        for r in range(len(s)):
+
+            while s[r] in charSet:
+
+                charSet.remove(s[l])
+                l += 1
+
+            charSet.add(s[r])
+
+            res = max(res, r - l + 1)
             
-            subst.append(s[i])
-
-            longest = max(longest, len(subst))
-
-        return longest
-            
+        return res
